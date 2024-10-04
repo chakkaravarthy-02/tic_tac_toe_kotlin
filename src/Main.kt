@@ -20,7 +20,7 @@ private fun ticTacToe(){
     while(!won) {
         while (true) {
             val (row, col) = getInput(player, symbol)
-            if(row==-1 && col==-1){
+            if(row==-1 && col==-1) {
                 continue
             }
             if (isValidPlace(board, row, col)) {
