@@ -1,14 +1,3 @@
-fun checkBoardForDraw(board: Array<Array<Char>>): Boolean {
-    for(i in 0..<3){
-        for(j in 0..<3){
-            if(board[i][j]=='_'){
-                return false
-            }
-        }
-    }
-    return true
-}
-
 private var won = false
 private var player = 1
 private var symbol = 'O'
@@ -42,7 +31,7 @@ private fun ticTacToe(){
             }
             if (checkBoardForWin(board, symbol)) {
                 won = true
-                println("Congratulation, Player$player($symbol) wins!")
+                println("Congratulation, Player$player('$symbol') wins!")
                 break
             }
 
@@ -58,7 +47,7 @@ private fun ticTacToe(){
     }
 }
 
-fun isValidPlace(board: Array<Array<Char>>, row: Int, col: Int): Boolean {
+private fun isValidPlace(board: Array<Array<Char>>, row: Int, col: Int): Boolean {
     return row in 0..2 && col in 0..2 && board[row][col]=='_'
 }
 
@@ -86,7 +75,7 @@ private fun updateBoard(board: Array<Array<Char>>, row: Int, col: Int, symbol: C
     board[row][col] = symbol
 }
 
-fun switchCurrentPlayerAndSymbol(): Pair<Int,Char> {
+private fun switchCurrentPlayerAndSymbol(): Pair<Int,Char> {
     return if(player==1){
         Pair(2,'X')
     }else{
@@ -95,7 +84,7 @@ fun switchCurrentPlayerAndSymbol(): Pair<Int,Char> {
 }
 
 private fun getInput(player: Int, symbol: Char):Pair<Int,Int> {
-    println("Player $player ($symbol), enter your move(row and column)")
+    println("Player $player ('$symbol'), enter your move(row and column)")
     val move = readln()
     val rc = move.trim().filter{ it in '0'..'9' }
     if(rc.isEmpty())return Pair(-1,-1)
@@ -110,4 +99,15 @@ private fun createBoard(): Array<Array<Char>> {
         arrayOf('_','_','_'),
         arrayOf('_','_','_'),
     )
+}
+
+private fun checkBoardForDraw(board: Array<Array<Char>>): Boolean {
+    for(i in 0..<3){
+        for(j in 0..<3){
+            if(board[i][j]=='_'){
+                return false
+            }
+        }
+    }
+    return true
 }
